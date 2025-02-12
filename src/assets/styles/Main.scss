@@ -1,0 +1,185 @@
+/* 🌙 Dark & ☀️ Light Mode Variables */
+$dark-bg: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+$light-bg: linear-gradient(135deg, #ffffff, #f2f2f2);
+$dark-text: #ffffff;
+$light-text: #333333;
+$blob-dark: radial-gradient(circle, rgba(255, 102, 153, 0.2), rgba(0, 0, 0, 0));
+$blob-light: radial-gradient(circle, rgba(0, 102, 255, 0.2), rgba(255, 255, 255, 0));
+
+/* 🌟 Main Page Section */
+a {
+    text-decoration: none;
+  }
+  .social_icons {
+    position: relative;
+    z-index: 10; /* Make sure it's above any overlapping elements */
+  }
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 5% 10%;
+    background: $light-bg;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+/* 🌙 Dark Mode Support */
+.dark-mode .about-section {
+    background: $dark-bg;
+    color: $dark-text;
+}
+
+.light-mode .about-section {
+    background: $light-bg;
+    color: $light-text;
+}
+
+/* 🎨 Animated Floating Blobs */
+.about-section::before,
+.about-section::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: $blob-light;
+    border-radius: 50%;
+    z-index: 0;
+    animation: floating 6s infinite alternate ease-in-out;
+    filter: blur(80px);
+}
+
+.about-section::before {
+    top: -50px;
+    left: -100px;
+}
+
+  
+.about-section::after {
+    bottom: -50px;
+    right: -100px;
+}
+
+.dark-mode .about-section::before,
+.dark-mode .about-section::after {
+    background: $blob-dark;
+}
+
+/* ✨ Floating Animation */
+@keyframes floating {
+    from {
+        transform: translateY(-10px);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+
+/* 🌟 Light Rays Effect */
+.about-section .light-rays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(75deg, rgba(255, 255, 255, 0.05) 10%, transparent 30%),
+                linear-gradient(-75deg, rgba(255, 255, 255, 0.05) 10%, transparent 30%);
+    background-size: 200% 200%;
+    opacity: 0.2;
+    z-index: 1;
+    animation: lightMove 20s infinite alternate ease-in-out;
+}
+
+/* ✨ Light Rays Animation */
+@keyframes lightMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+}
+
+/* 🖼️ Profile Image */
+.about-section .image-wrapper {
+    z-index: 2;
+    img {
+        width: 190px;
+        height: 170px;
+        border-radius: 50%;
+        border: 4px solid #ffcc00;
+        transition: transform 0.3s ease-in-out, border 0.3s;
+
+        &:hover {
+            transform: scale(1.1);
+            border-color: #ff6699;
+        }
+    }
+}
+
+/* 📜 Text Styling */
+.about-section h1 {
+    font-size: 4.2em;
+    font-weight: 700;
+    margin: 10px 0;
+    transition: background 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+}
+
+.dark-mode h1 {
+    background: linear-gradient(90deg, #ffcc00, #ff6699);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 0px 10px rgba(255, 204, 0, 0.5);
+}
+
+.light-mode h1 {
+    background: linear-gradient(90deg, #0056b3, #ff4500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 0px 10px rgba(0, 102, 255, 0.5);
+}
+
+/* 📱 Mobile Responsiveness */
+@media screen {
+    @media (max-width: 768px) {
+        .about-section {
+            padding: 12% 5%;
+            text-align: center;
+        }
+
+        .about-section h1 {
+            font-size: 3.5em !important;
+        }
+
+        .about-section p {
+            font-size: 1.2em;
+        }
+
+        .about-section .image-wrapper img {
+            width: 150px;
+        }
+    }
+
+    @media (max-width: 567px) {
+        .about-section {
+            padding: 15% 5%;
+        }
+
+        .about-section h1 {
+            font-size: 3em !important;
+        }
+
+        .about-section p {
+            font-size: 1.1em;
+        }
+    }
+}
